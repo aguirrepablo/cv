@@ -1,0 +1,48 @@
+---
+import { skills } from '../data/content';
+---
+
+<section id="stack">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Stack y herramientas</h2>
+      <p>Lo que uso a diario para llevar un proyecto de la idea a producción.</p>
+    </div>
+
+    <div class="cols">
+      {skills.map((group) => (
+        <div>
+          <h3>{group.title}</h3>
+          <ul>
+            {group.items.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cols {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  }
+  .cols h3 {
+    font-size: .688rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: var(--ink-soft);
+    margin: 0;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid var(--ink);
+  }
+  .cols ul { list-style: none; padding: 0; margin: .6rem 0 0; }
+  .cols li {
+    padding: .45rem 0;
+    border-bottom: 1px solid var(--hair-soft);
+    font-size: .92rem;
+    margin: 0;
+  }
+</style>

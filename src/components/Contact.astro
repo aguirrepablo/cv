@@ -1,0 +1,75 @@
+---
+import { site, mailto } from '../data/site';
+---
+
+<section id="contacto" class="contact-section">
+  <div class="wrap">
+    <div class="poster">
+      <span class="label">Contacto</span>
+      <h2>Contame el alcance y te respondo con propuesta.</h2>
+      <p>
+        Disponible para colaboraciones freelance por proyecto, 100% remoto. Propuesta con alcance,
+        tiempos y honorarios antes de arrancar.
+      </p>
+
+      <ul class="contact-list">
+        <li>
+          <span class="k label">Email</span>
+          <a href={mailto}>{site.email}</a>
+        </li>
+        <li>
+          <span class="k label">Teléfono</span>
+          <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
+        </li>
+        <li>
+          <span class="k label">LinkedIn</span>
+          <a href={site.linkedin} rel="noopener">{site.linkedinLabel}</a>
+        </li>
+        <li>
+          <span class="k label">Ubicación</span>
+          <span>{site.location}</span>
+        </li>
+      </ul>
+
+      <div class="btn-row">
+        <a class="btn btn-solid" href={mailto}>Enviar un mensaje <span class="arrow">→</span></a>
+        <a class="btn" href={site.cv}>Ver CV completo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-section { border-top: 0; padding-bottom: 0; }
+
+  .poster {
+    background: var(--ink);
+    color: var(--bone);
+    padding: clamp(1.8rem, 1rem + 3vw, 3.2rem);
+  }
+  .poster h2 { max-width: 16ch; margin-top: .8rem; margin-bottom: .5em; }
+  .poster p { color: rgba(229, 230, 225, .72); max-width: 52ch; }
+  .poster .label { color: rgba(229, 230, 225, .55); }
+
+  .poster .btn { border-color: var(--bone); color: var(--bone); }
+  .poster .btn:hover { background: var(--bone); color: var(--ink); }
+  .poster .btn-solid { background: var(--bone); color: var(--ink); }
+  .poster .btn-solid:hover { background: transparent; color: var(--bone); }
+
+  .contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    border-top: 1px solid rgba(229, 230, 225, .22);
+  }
+  .contact-list li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3rem 1.5rem;
+    padding: .8rem 0;
+    border-bottom: 1px solid rgba(229, 230, 225, .16);
+    margin: 0;
+  }
+  .contact-list .k { flex: 0 0 7rem; }
+  .contact-list a { color: var(--bone); }
+</style>

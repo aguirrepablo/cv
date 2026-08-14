@@ -1,0 +1,72 @@
+---
+import { site, mailto, metrics } from '../data/site';
+---
+
+<div class="hero wrap" id="top">
+  <div class="hero-top">
+    <span class="tag" style="--dot:#453b60">Disponible para proyectos</span>
+    <span class="tag" style="--dot:#65451d">Freelance · 100% remoto</span>
+  </div>
+
+  <h1>Del requerimiento al sitio publicado.</h1>
+
+  <p class="lede">
+    Desarrollador web y de software con más de <strong>10 años</strong> de experiencia y un fuerte
+    perfil de <strong>analista</strong>: me siento con el usuario, entiendo qué necesita realmente y
+    lo traduzco a un alcance concreto. Después lo llevo a una implementación prolija, responsive y
+    mantenible, sin agregar complejidad innecesaria.
+  </p>
+
+  <div class="btn-row">
+    <a class="btn btn-solid" href={mailto}>Escribime <span class="arrow">→</span></a>
+    <a class="btn" href={site.cv}>Ver CV</a>
+    <a class="btn" href={site.linkedin} rel="noopener">LinkedIn</a>
+  </div>
+
+  <div class="metrics">
+    {metrics.map((m) => (
+      <div>
+        <b>{m.value}</b>
+        <span>{m.label}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .hero { padding: clamp(3rem, 1.5rem + 6vw, 6rem) 0 var(--gap); }
+  .hero h1 { max-width: 15ch; margin-bottom: .55em; text-wrap: balance; }
+
+  .lede {
+    font-size: clamp(1.02rem, .95rem + .45vw, 1.22rem);
+    max-width: 56ch;
+    color: var(--ink-soft);
+  }
+  .lede strong { color: var(--ink); font-weight: 500; }
+
+  .hero-top { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 2rem; }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    border-top: 1px solid var(--hair);
+    margin-top: var(--gap);
+  }
+  .metrics div {
+    padding: 1.1rem 1.2rem 1.1rem 0;
+    border-right: 1px solid var(--hair-soft);
+  }
+  .metrics div:last-child { border-right: 0; }
+  .metrics b {
+    display: block;
+    font-size: 1.9rem;
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+  }
+  .metrics span { font-size: .84rem; color: var(--ink-soft); }
+
+  @media (max-width: 560px) {
+    .metrics div { border-right: 0; border-bottom: 1px solid var(--hair-soft); }
+  }
+</style>

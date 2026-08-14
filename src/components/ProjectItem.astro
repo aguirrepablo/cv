@@ -1,0 +1,224 @@
+---
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+}
+
+const { project: p } = Astro.props;
+
+const miniStyle = [
+  `--surface:${p.mini.surface}`,
+  `--fg:${p.mini.fg}`,
+  `--fg-soft:${p.mini.fgSoft}`,
+  `--accent:${p.mini.accent}`,
+].join('; ');
+---
+
+<article class="item" style={`--pastel:${p.pastel}`}>
+  <div class="item-head">
+    <span class="idx">{p.index}</span>
+    <h3>{p.name}</h3>
+    <span class="tag" style={`--dot:${p.tagDot}`}>{p.tag}</span>
+    <span class="spacer"></span>
+    {p.links.map((l) => (
+      <a class="url mono" href={l.href} rel="noopener">{l.label} ↗</a>
+    ))}
+  </div>
+
+  <div class="item-body">
+    <div class="panel">
+      <span class="label">{p.panelLabel}</span>
+
+      {/* Captura real; si el archivo no está, cae a la miniatura dibujada en CSS */}
+      <div class="thumb" style={`--surface:${p.mini.surface}`}>
+        <img src={p.image} alt={p.imageAlt} loading="lazy" decoding="async" width="1600" height="1000" />
+        <div class="mini" aria-hidden="true" style={miniStyle}>
+          <div class="mini-bar">
+            <span class="logo"></span>
+            <span class="nav"><i></i><i></i><i></i></span>
+            <span class="cta"></span>
+          </div>
+          {p.wire.map((w) =>
+            w === 'row' ? (
+              <div class="row"><i></i><i></i><i></i></div>
+            ) : (
+              <i class={w}></i>
+            )
+          )}
+        </div>
+      </div>
+    </div>
+
+    <div class="detail">
+      <span class="label">{p.whatLabel}</span>
+      <p>{p.what}</p>
+
+      <span class="label">{p.didLabel}</span>
+      <ul>
+        {p.did.map((d) => <li>{d}</li>)}
+      </ul>
+
+      <span class="label stack-label">Stack</span>
+      <ul class="stack">
+        {p.stack.map((s) => <li>{s}</li>)}
+      </ul>
+
+      {p.note && (
+        <p class="mono note">
+          {p.note.text} <a href={p.note.href} rel="noopener">{p.note.label} ↗</a>
+        </p>
+      )}
+    </div>
+  </div>
+</article>
+
+<style>
+  .item { border-bottom: 1px solid var(--hair); background: var(--paper); }
+
+  .item-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .7rem 1.1rem;
+    padding: 1.1rem 1.6rem;
+    border-bottom: 1px solid var(--hair-soft);
+  }
+  .idx {
+    font-size: .688rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    color: var(--ink-soft);
+  }
+  .item-head h3 { margin: 0; flex: 0 0 auto; }
+  .spacer { flex: 1 1 auto; }
+  .url {
+    text-decoration: none;
+    border-bottom: 1px solid var(--hair);
+    padding-bottom: 1px;
+  }
+  .url:hover { border-color: var(--ink); }
+
+  .item-body { display: grid; grid-template-columns: 1fr; }
+  @media (min-width: 900px) {
+    .item-body { grid-template-columns: 38% 62%; }
+  }
+
+  /* ficha de inventario pastel */
+  .panel {
+    background: var(--pastel);
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    border-bottom: 1px solid var(--hair-soft);
+  }
+  @media (min-width: 900px) {
+    .panel { border-bottom: 0; border-right: 1px solid var(--hair-soft); }
+  }
+  .panel .label { color: rgba(21, 21, 21, .6); }
+
+  /* Captura encajada en el marco pastel */
+  .thumb {
+    margin-top: auto;
+    aspect-ratio: 16 / 10;
+    border: 1px solid rgba(21, 21, 21, .22);
+    border-radius: 3px;
+    overflow: hidden;
+    background: var(--surface, var(--paper));
+  }
+  .thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .thumb .mini { display: none; }
+  .thumb.no-img {
+    aspect-ratio: auto;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    overflow: visible;
+  }
+  .thumb.no-img img { display: none; }
+  .thumb.no-img .mini { display: grid; }
+
+  /* miniatura dibujada, con los colores del sitio real */
+  .mini {
+    margin-top: auto;
+    background: var(--surface);
+    border: 1px solid rgba(21, 21, 21, .22);
+    border-radius: 3px;
+    padding: .8rem;
+    display: grid;
+    gap: .45rem;
+  }
+  .mini-bar { display: flex; align-items: center; gap: .3rem; margin-bottom: .35rem; }
+  .mini-bar .logo {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--accent); flex: none;
+  }
+  .mini-bar .nav { margin-left: auto; display: flex; gap: .25rem; }
+  .mini-bar .nav i { width: 13px; height: 3px; border-radius: 1px; background: var(--fg-soft); }
+  .mini-bar .cta {
+    width: 22px; height: 8px; border-radius: 1px;
+    background: var(--fg); margin-left: .3rem;
+  }
+  .mini i { display: block; border-radius: 1px; }
+  .mini i.d { height: 13px; background: var(--fg); border-radius: 2px; }
+  .mini i.t { height: 5px; background: var(--fg-soft); }
+  .mini i.a { height: 4px; background: var(--accent); }
+  .mini .row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .4rem;
+    margin-top: .2rem;
+  }
+  .mini .row i {
+    height: 26px;
+    background: transparent;
+    border: 1px solid var(--fg-soft);
+    border-radius: 2px;
+  }
+  .w25 { width: 25%; } .w30 { width: 30%; } .w45 { width: 45%; }
+  .w60 { width: 60%; } .w70 { width: 70%; } .w80 { width: 80%; }
+
+  .detail { padding: 1.6rem; }
+  .detail > .label { display: block; margin-bottom: .4rem; }
+  .detail > .label + p { margin-bottom: 1.5rem; }
+  .detail ul { padding-left: 0; list-style: none; margin-bottom: 1.5rem; }
+  .detail ul li {
+    padding: .55rem 0 .55rem 1.5rem;
+    border-bottom: 1px solid var(--hair-soft);
+    position: relative;
+    font-size: .95rem;
+  }
+  .detail ul li::before {
+    content: '';
+    position: absolute;
+    left: .3rem;
+    top: 1.15rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--pastel);
+    outline: 1px solid rgba(21, 21, 21, .3);
+  }
+  .detail ul li:last-child { border-bottom: 0; }
+
+  .stack-label { display: block; margin-bottom: .5rem; }
+  .stack { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; padding: 0; margin: 0; }
+  .stack li {
+    margin: 0;
+    padding: .25rem .7rem;
+    border: 1px solid var(--hair);
+    border-radius: var(--pill);
+    font-size: .78rem;
+    color: var(--ink-soft);
+  }
+  .stack li::before { display: none; }
+
+  .note { margin: 1.2rem 0 0; color: var(--ink-soft); }
+</style>

@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aguirre Pablo — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-body: #f3f4f6;
+    --bg-page: #ffffff;
+    --text-primary: #111827;
+    --text-secondary: #374151;
+    --text-muted: #6b7280;
+    --line: #111827;
+    --line-subtle: #e5e7eb;
+    --tag-bg: #f9fafb;
+    --tag-border: #d1d5db;
+    --font-heading: 'EB Garamond', Georgia, serif;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-style: normal !important;
+  }
+
+  body {
+    background-color: var(--bg-body);
+    font-family: var(--font-sans);
+    color: var(--text-primary);
+    line-height: 1.45;
+    font-size: 12.5px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* TOOLBAR (NO PRINT) */
+  .toolbar {
+    max-width: 820px;
+    margin: 20px auto 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    border: 1px solid var(--line-subtle);
+  }
+
+  .toolbar-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .btn-print {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    transition: background 0.15s ease;
+  }
+
+  .btn-print:hover {
+    background: #1e293b;
+  }
+
+  /* PAGE CONTAINER */
+  .page {
+    background: var(--bg-page);
+    max-width: 820px;
+    margin: 10px auto 40px;
+    padding: 48px 56px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  }
+
+  /* HEADER (REGLA 1) */
+  .header {
+    text-align: center;
+    border-bottom: 2px solid var(--text-primary);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+
+  .name {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .title-tagline {
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+
+  .contact-info {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    font-size: 11.5px;
+    color: var(--text-secondary);
+  }
+
+  .contact-info a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .contact-info a:hover {
+    text-decoration: underline;
+  }
+  .contact-sep {
+    color: var(--text-muted);
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: 13.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--text-primary);
+    padding-bottom: 3px;
+    margin-bottom: 8px;
+  }
+
+  /* PERFIL (REGLA 2) */
+  .summary-text {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    text-align: justify;
+  }
+
+  /* LOGROS DESTACADOS (REGLA 6) */
+  .achievements-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .achievements-list li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 11.8px;
+    line-height: 1.45;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+
+  .achievements-list li::before {
+    content: "▪";
+    position: absolute;
+    left: 2px;
+    font-size: 9px;
+    color: var(--text-primary);
+  }
+
+  .achievements-list strong {
+    color: var(--text-primary);
+  }
+
+  /* EXPERIENCIA (REGLA 4) */
+  .company-block {
+    margin-bottom: 14px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .company-block:last-child {
+    margin-bottom: 0;
+  }
+
+  .company-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+  }
+
+  .company-name {
+    font-family: var(--font-heading);
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .company-loc {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  .company-desc {
+    font-size: 11.2px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+
+  .role-block {
+    margin-bottom: 8px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .role-block:last-child {
+    margin-bottom: 4px;
+  }
+
+  .role-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+  }
+
+  .role-title {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .role-dates {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .bullet-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .bullet-list li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 11.8px;
+    line-height: 1.45;
+    color: var(--text-secondary);
+    margin-bottom: 2px;
+  }
+
+  .bullet-list li::before {
+    content: "•";
+    position: absolute;
+    left: 2px;
+    font-size: 11px;
+    color: var(--text-primary);
+  }
+
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 4px;
+  }
+
+  .tag {
+    font-size: 9.5px;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+
+  /* 2-COLUMN LAYOUT */
+  .grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+
+  /* EDUCACION (REGLA 3) */
+  .edu-item {
+    margin-bottom: 8px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .edu-degree {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .edu-school {
+    font-size: 11.5px;
+    color: var(--text-secondary);
+  }
+
+  .edu-dates {
+    font-size: 10.5px;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  /* HABILIDADES TECNICAS (REGLA 5) */
+  .skill-group {
+    margin-bottom: 6px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .skill-group-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    margin-bottom: 1px;
+  }
+
+  .skill-group-content {
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  /* IDIOMAS (REGLA 7) */
+  .lang-list {
+    list-style: none;
+  }
+  .lang-list li {
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    margin-bottom: 3px;
+  }
+
+  /* REFERENCIAS (REGLA 8) */
+  .ref-note {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--line-subtle);
+  }
+
+  /* PRINT RULES FOR PDF WITH AUTOMATIC PAGE NUMBERING */
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 12mm 15mm 16mm 15mm;
+      @bottom-right {
+        content: "Página " counter(page) " de " counter(pages);
+        font-size: 8.5pt;
+        color: #555555;
+        font-family: 'Inter', system-ui, sans-serif;
+        font-weight: 500;
+      }
+      @bottom-left {
+        content: "Pablo Aguirre — Curriculum Vitae";
+        font-size: 8.5pt;
+        color: #555555;
+        font-family: 'Inter', system-ui, sans-serif;
+        font-weight: 500;
+      }
+    }
+
+    body {
+      background: #ffffff !important;
+      color: #000000 !important;
+    }
+
+    .toolbar {
+      display: none !important;
+    }
+
+    .page {
+      box-shadow: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      max-width: 100% !important;
+    }
+
+    .company-block, .role-block, .edu-item, .skill-group, .section {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+
+    .section-title {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOOLBAR (NO PRINT) -->
+<div class="toolbar no-print">
+  <div class="toolbar-title">Aguirre Pablo — CV</div>
+  <button class="btn-print" onclick="window.print()">Exportar a PDF / Imprimir</button>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="page">
+
+  <!-- 1️⃣ INFORMACIÓN DE CONTACTO -->
+  <header class="header">
+    <h1 class="name">Pablo Aguirre</h1>
+    <div class="title-tagline">Desarrollador Backend &amp; Arquitecto de Software (.NET / Node.js)</div>
+    <div class="contact-info">
+      <span>Villa Carlos Paz, Córdoba, Argentina</span>
+      <span class="contact-sep">|</span>
+      <span>+54 11 3918 2509</span>
+      <span class="contact-sep">|</span>
+      <span><a href="mailto:pe.aguirre@outlook.com">pe.aguirre@outlook.com</a></span>
+      <span class="contact-sep">|</span>
+      <span><a href="https://linkedin.com/in/paguirre90" target="_blank">linkedin.com/in/paguirre90</a></span>
+    </div>
+  </header>
+
+  <!-- 2️⃣ PERFIL PROFESIONAL -->
+  <section class="section">
+    <h2 class="section-title">Perfil Profesional</h2>
+    <p class="summary-text">
+      Desarrollador Backend &amp; Arquitecto de Software con más de 10 años de trayectoria en ingeniería, integración y evolución de sistemas empresariales. Experiencia comprobada en múltiples sectores clave: <strong>seguros (insurtech), servicios financieros (fintech), retail, gastronomía y sistemas de gestión ERP</strong>. Actualmente me desempeño como Jefe de Sistemas, liderando el roadmap tecnológico, definiendo arquitecturas escalables y manteniendo un rol hands-on en el desarrollo de microservicios e integraciones con <strong>.NET, C# y Node.js/NestJS</strong>.
+    </p>
+    <p class="summary-text" style="margin-top: 6px;">
+      Especialista en la <strong>resolución de situaciones críticas y toma de decisiones bajo presión</strong>, combinando respuestas inmediatas de contingencia con soluciones sostenibles a corto, mediano y largo plazo. Destaco por mi agilidad para recalcular prioridades técnicas adaptándome a las necesidades imprevistas del negocio sin perder de vista los objetivos estratégicos anuales.
+    </p>
+    <p class="summary-text" style="margin-top: 6px;">
+      Pionero en la <strong>adopción de Inteligencia Artificial como herramienta potente de ingeniería</strong> (Claude CLI, Claude Code, Antigravity CLI, Perplexity) aplicada a la planificación, análisis, exploración de alternativas, generación/revisión de código y documentación, manteniendo siempre el criterio de ingeniería, la calidad y la seguridad. Asimismo, he desarrollado e integrado agentes de IA con APIs de Anthropic, Gemini y ChatGPT.
+    </p>
+  </section>
+
+  <!-- 6️⃣ LOGROS DESTACADOS -->
+  <section class="section">
+    <h2 class="section-title">Logros Destacados</h2>
+    <ul class="achievements-list">
+      <li><strong>Plataforma SaaS Omnicanal basada en IA (Segurarse):</strong> Concepción y arquitectura de una plataforma SaaS multitenant para convergencia omnicanal (WhatsApp/Meta, Teams, Telegram, Email) impulsada por Agentes de IA autónomos, copilotos para operadores humanos, orquestación de colas, auditoría automatizada y dashboards de métricas en tiempo real.</li>
+      <li><strong>Modernización Arquitectónica de Monolito a SaaS (Segurarse):</strong> Liderazgo técnico en la migración de un monolito legacy hacia una arquitectura modular SaaS escalable, reorientando el modelo de negocio para dar soporte personalizado a bancos y grandes retailers optimizando la estructura operativa.</li>
+      <li><strong>API Core &amp; Onboarding Digital Financiero desde Cero (Cartasur):</strong> Diseño e implementación desde cero de una API Core centralizada consumida por POS de sucursales y créditos online, integrando validación biométrica y bancaria (RENAPER, BIND) con ejecución automática de transferencias.</li>
+      <li><strong>Big Data, Internacionalización &amp; Alta Transaccionalidad SQL (TsCoredata — Tecseris):</strong> Análisis y desarrollo de la plataforma <strong>TsCoredata</strong> para <a href="https://tecseris.com/" target="_blank">Tecseris</a>, desplegada internacionalmente en <strong>8+ países</strong> (Chile, Ecuador, Argentina, Costa Rica, EE.UU., México, España, Italia). Centralización en tiempo real de <strong>+500 sucursales gastronómicas</strong> procesando más de <strong>260,000 consultas/sesiones analíticas</strong> con ingesta SQL masiva por hora e hiperconsultas concurrentes sin degradar la performance.</li>
+      <li><strong>Plataforma de Redes de Servicios &amp; Garantía Extendida (Segurarse):</strong> Análisis y desarrollo end-to-end de un ecosistema para la gestión de redes de servicios postventa, conectando centros de servicio técnico, proveedores y clientes de diversos e-commerces.</li>
+    </ul>
+  </section>
+
+  <!-- 4️⃣ EXPERIENCIA PROFESIONAL -->
+  <section class="section">
+    <h2 class="section-title">Experiencia Profesional</h2>
+
+    <!-- EMPRESA 1 -->
+    <div class="company-block">
+      <div class="company-header">
+        <span class="company-name">Segurarse</span>
+        <span class="company-loc">Florida Oeste, Buenos Aires</span>
+      </div>
+      <div class="company-desc">Broker digital de seguros e Insurtech líder en la región.</div>
+
+      <div class="role-block">
+        <div class="role-header">
+          <span class="role-title">Jefe de Sistemas</span>
+          <span class="role-dates">Dic. 2024 — Presente</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Liderazgo del roadmap tecnológico y migración de la plataforma monolítica legacy a una arquitectura de microservicios modulares en esquema SaaS multitenant para soporte a bancos y retail.</li>
+          <li>Concepción y arquitectura de la plataforma SaaS de convergencia de conversaciones omnicanal (WhatsApp/Meta, Instagram, Teams, Telegram, Email), operada por Agentes de IA autónomos y copilotos asistidos.</li>
+          <li>Implementación de orquestación de colas de mensajería, auditoría automatizada con IA y dashboards con métricas en tiempo real.</li>
+          <li>Análisis y desarrollo de la plataforma para la gestión de redes de servicios de garantía extendida, articulando e-commerces, proveedores y centros de servicio.</li>
+        </ul>
+      </div>
+
+      <div class="role-block">
+        <div class="role-header">
+          <span class="role-title">Desarrollador Senior</span>
+          <span class="role-dates">Jun. 2023 — Dic. 2024</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Arquitectura e integración de APIs de aseguradoras y partners estratégicos al multicotizador central y servicios B2B2C / white-label.</li>
+          <li>Desarrollo de servicios centrales de cotización y emisión de alta concurrencia sobre .NET y NestJS.</li>
+        </ul>
+        <div class="tags-container">
+          <span class="tag">C# / .NET</span>
+          <span class="tag">NestJS</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">Azure</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">AI Agents</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMPRESA 2 -->
+    <div class="company-block">
+      <div class="company-header">
+        <span class="company-name">Cartasur Cards S.A.</span>
+        <span class="company-loc">Lomas de Zamora, Buenos Aires</span>
+      </div>
+      <div class="company-desc">Entidad financiera no bancaria emisora de tarjetas de crédito y préstamos personales.</div>
+
+      <div class="role-block">
+        <div class="role-header">
+          <span class="role-title">Coordinador Técnico de Desarrollo</span>
+          <span class="role-dates">Feb. 2022 — May. 2023</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Liderazgo técnico en la migración del core hacia una API centralizada desde cero, consumida por sucursales (POS) y la plataforma de préstamos online.</li>
+          <li>Desarrollo de la plataforma de Onboarding Digital con validaciones en tiempo real y ejecución automática de transferencias mediante integración con RENAPER y BIND.</li>
+          <li>Coordinación del equipo de ingeniería, planificación de sprints, code reviews y definición de estándares de calidad y seguridad.</li>
+        </ul>
+      </div>
+
+      <div class="role-block">
+        <div class="role-header">
+          <span class="role-title">Analista Sr. / Semi Sr. de Programación</span>
+          <span class="role-dates">Jun. 2020 — Feb. 2022</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Diseño y construcción de endpoints RESTful para la API central sobre ecosistemas .NET.</li>
+          <li>Modelado relacional y NoSQL en SQL Server y MongoDB; implementación de pipelines de integración continua (CI/CD) con Git.</li>
+        </ul>
+        <div class="tags-container">
+          <span class="tag">C# / .NET</span>
+          <span class="tag">Angular</span>
+          <span class="tag">SQL Server</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">Git</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROYECTO DESTACADO PERSONAL -->
+    <div class="company-block">
+      <div class="company-header">
+        <span class="company-name">TsCoredata — Tecseris</span>
+        <span class="company-loc">Proyecto Destacado / Operación Internacional</span>
+      </div>
+      <div class="company-desc">Plataforma de procesamiento transaccional y analítica para <a href="https://tecseris.com/" target="_blank">Tecseris</a> (Gastronomía &amp; Retail).</div>
+
+      <div class="role-block">
+        <div class="role-header">
+          <span class="role-title">Arquitecto &amp; Desarrollador Principal</span>
+          <span class="role-dates">Plataforma Internacional Activa</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Análisis, arquitectura de base de datos y desarrollo integral de <strong>TsCoredata</strong> para <a href="https://tecseris.com/" target="_blank">Tecseris</a>, centralizando datos en tiempo real de más de <strong>500 sucursales gastronómicas</strong> en 8+ países (Chile, Ecuador, Argentina, Costa Rica, EE.UU., México, España e Italia).</li>
+          <li>Tuning avanzado de base de datos SQL para soportar la ingesta masiva de alto volumen transaccional por hora (procesando más de <strong>260,000 consultas/sesiones analíticas acumuladas</strong>) manteniendo la ejecución paralela de reportería con máxima performance.</li>
+        </ul>
+        <div class="tags-container">
+          <span class="tag">High Concurrency SQL</span>
+          <span class="tag">Multi-Country Operations</span>
+          <span class="tag">Big Data Analytics</span>
+          <span class="tag">Database Tuning</span>
+          <span class="tag">Backend Architecture</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMPRESA 3 -->
+    <div class="company-block">
+      <div class="company-header">
+        <span class="company-name">Grupo Centum</span>
+        <span class="company-loc">Parque Leloir, Buenos Aires</span>
+      </div>
+      <div class="company-desc">Consultora tecnológica especializada en soluciones y sistemas ERP empresariales.</div>
+
+      <div class="role-block">
+        <div class="role-header">
+          <span class="role-title">Desarrollador de Software · Analista Funcional · Consultor</span>
+          <span class="role-dates">Nov. 2017 — May. 2020</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Relevamiento funcional y desarrollo de módulos a medida sobre la plataforma ERP corporativa.</li>
+          <li>Integración del ERP con plataformas externas (WMS, CRM, BI), liderando procesos de migración de datos y capacitación de usuarios.</li>
+          <li>Atención técnica a clientes corporativos y soporte N2/N3 en resolución de incidentes.</li>
+        </ul>
+        <div class="tags-container">
+          <span class="tag">ERP</span>
+          <span class="tag">Integraciones REST/SOAP</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Consultoría Técnica</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMPRESA 4: FREDDO -->
+    <div class="company-block">
+      <div class="company-header">
+        <span class="company-name">Freddo</span>
+        <span class="company-loc">Buenos Aires</span>
+      </div>
+      <div class="company-desc">Cadena gastronómica líder / Heladerías artesanales &amp; Retail.</div>
+
+      <div class="role-block">
+        <div class="role-header">
+          <span class="role-title">Analista Desarrollador</span>
+          <span class="role-dates">Oct. 2013 — Nov. 2017</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Mantenimiento y evolución de sistemas de gestión interna: puntos de venta (POS), control de producción, logística, delivery y administración centralizada de sucursales.</li>
+          <li>Integración de sistemas in-house con ERP Bejerman y SAP; gestión de proveedores tecnológicos e interacción directa con áreas operativas.</li>
+        </ul>
+        <div class="tags-container">
+          <span class="tag">VB6</span>
+          <span class="tag">ASP.NET</span>
+          <span class="tag">Oracle</span>
+          <span class="tag">SQL Server</span>
+          <span class="tag">SVN</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMPRESA 5: UNLAM -->
+    <div class="company-block">
+      <div class="company-header">
+        <span class="company-name">Universidad Nacional de La Matanza (UNLaM)</span>
+        <span class="company-loc">San Justo, Buenos Aires</span>
+      </div>
+      <div class="company-desc">Institución pública de educación superior.</div>
+
+      <div class="role-block">
+        <div class="role-header">
+          <span class="role-title">Desarrollador Web (Freelance)</span>
+          <span class="role-dates">Dic. 2012 — Oct. 2013</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Desarrollo e implementación de sistemas web de carga y procesamiento de encuestas institucionales para la universidad.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRID INFERIOR (3️⃣ EDUCACION, 5️⃣ SKILLS, 7️⃣ IDIOMAS) -->
+  <div class="grid-2col">
+    <!-- COLUMNA IZQUIERDA: EDUCACIÓN E IDIOMAS -->
+    <div>
+      <!-- 3️⃣ EDUCACIÓN -->
+      <section class="section">
+        <h2 class="section-title">Educación</h2>
+        <div class="edu-item">
+          <div class="edu-degree">Analista de Sistemas</div>
+          <div class="edu-school">IRESM</div>
+          <div class="edu-dates">2025 — Cursando</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-degree">Técnico en Diseño y Aplicaciones Web</div>
+          <div class="edu-school">Universidad Nacional de La Matanza</div>
+          <div class="edu-dates">2011 — 2013</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-degree">Ingeniería Informática</div>
+          <div class="edu-school">Universidad Nacional de La Matanza</div>
+          <div class="edu-dates">2009 — 2011</div>
+        </div>
+      </section>
+
+      <!-- 7️⃣ IDIOMAS -->
+      <section class="section">
+        <h2 class="section-title">Idiomas</h2>
+        <ul class="lang-list">
+          <li><strong>Español:</strong> Lengua Nativa (C2)</li>
+          <li><strong>Inglés:</strong> Nivel B1 / B2 (Lectura y documentación técnica)</li>
+        </ul>
+      </section>
+
+      <!-- CERTIFICACIÓN -->
+      <section class="section">
+        <h2 class="section-title">Certificaciones</h2>
+        <div class="edu-item">
+          <div class="edu-degree">Oracle PL/SQL</div>
+          <div class="edu-school">Programación en Base de Datos Oracle (2016)</div>
+        </div>
+      </section>
+    </div>
+
+    <!-- COLUMNA DERECHA: 5️⃣ HABILIDADES TÉCNICAS -->
+    <div>
+      <section class="section">
+        <h2 class="section-title">Habilidades Técnicas</h2>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Software &amp; Lenguajes</div>
+          <div class="skill-group-content">C#, TypeScript, JavaScript, SQL, PL/SQL, .NET Core / ASP.NET, Node.js, NestJS, React, VB6</div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Bases de Datos &amp; Cloud</div>
+          <div class="skill-group-content">PostgreSQL, MySQL, MongoDB, MariaDB, SQL Server, Oracle, Azure</div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Metodologías &amp; Herramientas</div>
+          <div class="skill-group-content">Scrum, Kanban, REST &amp; SOAP APIs, Microservicios, CI/CD Pipelines, Code Reviews, Git</div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Tendencias de Gestión e IA</div>
+          <div class="skill-group-content">Agentes de Inteligencia Artificial (Anthropic, OpenAI, Gemini), Claude Code CLI, Prompt Engineering</div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- 8️⃣ REFERENCIAS -->
+  <div class="ref-note">
+    Referencias laborales y profesionales disponibles previa solicitud.
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+---
+import { site, nav } from '../data/site';
+---
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#top">{site.name}</a>
+    <nav aria-label="Navegación principal">
+      <ul>
+        {nav.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: var(--bone);
+    border-bottom: 1px solid var(--hair);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 64px;
+  }
+
+  .brand {
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    font-size: 1.05rem;
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+  }
+  .brand::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var(--ink);
+    border-radius: 50%;
+  }
+
+  .nav ul {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav li { margin: 0; }
+  .nav ul a {
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: var(--pill);
+    padding: .3rem .8rem;
+    font-size: .85rem;
+    color: var(--ink-soft);
+    transition: color .15s, border-color .15s;
+  }
+  .nav ul a:hover { color: var(--ink); border-color: var(--hair); }
+
+  @media (max-width: 720px) {
+    .nav ul { display: none; }
+  }
+</style>

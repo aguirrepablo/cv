@@ -1,0 +1,50 @@
+---
+import { steps } from '../data/content';
+---
+
+<section id="metodo">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Cómo trabajo</h2>
+      <p>
+        Análisis primero, implementación después. Por alcance y entregables definidos, con
+        comunicación clara.
+      </p>
+    </div>
+
+    <div class="steps">
+      {steps.map((s) => (
+        <div class="step">
+          <span class="n">{s.n}</span>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .steps { border-top: 1px solid var(--hair); }
+
+  .step {
+    display: grid;
+    gap: .2rem 2rem;
+    grid-template-columns: 1fr;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--hair-soft);
+  }
+  @media (min-width: 820px) {
+    .step { grid-template-columns: 3.5rem 20rem 1fr; align-items: start; }
+  }
+
+  .n {
+    font-size: .688rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    color: var(--ink-soft);
+    padding-top: .35rem;
+  }
+  .step h3 { margin: 0; font-size: 1.2rem; letter-spacing: -0.025em; }
+  .step p { margin: 0; color: var(--ink-soft); font-size: .95rem; max-width: 54ch; }
+</style>

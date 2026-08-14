@@ -1,0 +1,34 @@
+---
+import { projects } from '../data/projects';
+import ProjectItem from './ProjectItem.astro';
+---
+
+<section id="trabajos">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Trabajos publicados</h2>
+      <p>
+        Sitios y plataformas en producción hoy. En los dos primeros hice todo: análisis, diseño,
+        front, back, formularios, integraciones y deploy.
+      </p>
+    </div>
+
+    <div class="catalog">
+      {projects.map((project) => <ProjectItem project={project} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .catalog { border-top: 1px solid var(--hair); }
+</style>
+
+<script>
+  // Si una captura todavía no está subida, el panel cae a la miniatura CSS
+  // en vez de mostrar el ícono de imagen rota.
+  document.querySelectorAll<HTMLImageElement>('.thumb img').forEach((img) => {
+    const fail = () => img.closest('.thumb')?.classList.add('no-img');
+    if (img.complete && img.naturalWidth === 0) fail();
+    img.addEventListener('error', fail);
+  });
+</script>
