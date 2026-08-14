@@ -53,9 +53,11 @@ import { site, mailto, metrics } from '../data/site';
     margin-top: var(--gap);
   }
   .metrics div {
-    padding: 1.1rem 1.2rem 1.1rem 0;
+    padding: 1.1rem 1.2rem;
     border-right: 1px solid var(--hair-soft);
   }
+  /* La primera columna se alinea con el margen de la página */
+  .metrics div:first-child { padding-left: 0; }
   .metrics div:last-child { border-right: 0; }
   .metrics b {
     display: block;
@@ -67,6 +69,11 @@ import { site, mailto, metrics } from '../data/site';
   .metrics span { font-size: .84rem; color: var(--ink-soft); }
 
   @media (max-width: 560px) {
-    .metrics div { border-right: 0; border-bottom: 1px solid var(--hair-soft); }
+    /* Apiladas: no hay divisor vertical, así que todas alinean al margen */
+    .metrics div {
+      border-right: 0;
+      border-bottom: 1px solid var(--hair-soft);
+      padding-left: 0;
+    }
   }
 </style>

@@ -209,16 +209,29 @@ const miniStyle = [
   .detail ul li:last-child { border-bottom: 0; }
 
   .stack-label { display: block; margin-bottom: .5rem; }
-  .stack { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; padding: 0; margin: 0; }
-  .stack li {
+
+  /* Las píldoras van anidadas dentro de .detail, así que necesitan más
+     especificidad que `.detail ul li` para no heredar el padding de lista. */
+  .detail .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .detail .stack li {
     margin: 0;
     padding: .25rem .7rem;
     border: 1px solid var(--hair);
+    border-bottom: 1px solid var(--hair);
     border-radius: var(--pill);
     font-size: .78rem;
+    line-height: 1.5;
     color: var(--ink-soft);
+    position: static;
   }
-  .stack li::before { display: none; }
+  .detail .stack li::before { content: none; }
 
   .note { margin: 1.2rem 0 0; color: var(--ink-soft); }
 </style>
