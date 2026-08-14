@@ -54,10 +54,16 @@ public/
 Casi todo se toca desde `src/data/`. Para agregar un proyecto al catálogo,
 sumá un objeto a `projects.ts`: el markup se genera solo.
 
-## Deploy en Netlify
+## Deploy
 
-`netlify.toml` ya está configurado (`npm run build` → `dist`). Conectá el repo
-y no hace falta tocar nada más en el panel de Netlify.
+**Vercel** (actual): importá el repo y listo. Vercel detecta Astro solo, y
+`vercel.json` ya define build, output y los headers de cache.
+
+La URL canónica se resuelve sola desde `VERCEL_PROJECT_PRODUCTION_URL`. Cuando
+haya dominio propio, definí `SITE_URL` en *Settings → Environment Variables*
+(por ejemplo `https://pabloaguirre.com.ar`) y se usa esa.
+
+**Netlify**: `netlify.toml` queda como alternativa, con la misma configuración.
 
 ## Diseño
 
